@@ -13,6 +13,7 @@ class FarMar::Market
     @state = hash[:state]
     @zip = hash[:zip]
     @@all_markets = []
+
   end
 
   def self.read_in_csv(csv_file)
@@ -35,8 +36,20 @@ class FarMar::Market
     @@all_markets
   end
 
+  def self.find(id)
+    @@all_markets.each do |market|
+      if market.id == id
+        return market.name
+        break
+      end
+    end
+  end
+
 end
-#
+# #
 # marketlist = FarMar::Market.read_in_csv('//Users/laurenfries/ada/week-5/farmar/support/markets.csv')
-#
-# ap marketlist
+# #
+# random_market = FarMar::Market.all.sample
+# puts random_market.name
+# puts random_market.id
+# puts FarMar::Market.find(random_market.id)

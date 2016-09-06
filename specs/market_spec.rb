@@ -5,9 +5,6 @@ require_relative '../lib/farmar_market'
 describe 'testing market class' do
 
   list_of_markets = FarMar::Market.read_in_csv('//Users/laurenfries/ada/week-5/farmar/support/markets.csv')
-  # # manual_list_of_markets = [FarMar::Market.new({id: 30238, name: "Blue", city: "Superior"}),
-  #                         FarMar::Market.new({id: 40924, name: "Cat", city: "Tracktown"}),
-  #                         FarMar::Market.new({id: 39, name: "LaurenEFB", city: "Seattle"})]
 
   it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
@@ -18,6 +15,7 @@ describe 'testing market class' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
   end
 
+  # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
     expect(list_of_markets.sample.id).must_be_instance_of(Fixnum)
     expect(list_of_markets.sample.name).must_be_instance_of(String)
@@ -42,7 +40,16 @@ describe 'testing market class' do
     expect(array_of_names.include?("Medford Farmers Market")).must_equal(true)
     expect(array_of_names.include?("Scripps Ranch Farmers Market & Family Festival")).must_equal(true)
     expect(array_of_names.include?("Warren Farmers Market")).must_equal(true)
-
   end
+
+  it 'self.all should be a class method, and thus raise method error if called on an instance' do
+    expect( proc {list_of_markets.sample.all} ).must_raise(NoMethodError)
+  end
+
+  it 'self.find(id) must return the correct market name' do
+    random_market = FarMar::Market.all.sample
+    expect(FarMar::Market.find(random_market.id)).must_equal(random_market.name)
+  end
+
 
 end # end of describe
