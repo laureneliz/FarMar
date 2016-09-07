@@ -28,8 +28,8 @@ describe 'testing Market class' do
   end
 
   it 'self.all should return an array of all markets' do
-    expect(FarMar::Market.all).must_be_instance_of(Array)
-    expect(FarMar::Market.all.length).must_equal(500)
+    expect(list_of_markets).must_be_instance_of(Array)
+    expect(list_of_markets.length).must_equal(500)
   end
 
   it 'self.all array should contain all markets, including a random sampling of market names' do
