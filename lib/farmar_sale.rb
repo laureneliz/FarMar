@@ -28,4 +28,14 @@ class FarMar::Sale
     return sales
   end
 
+  def self.find(id)
+    id.class != Fixnum ? raise(ArgumentError) : id
+
+    self.all.each do |sale|
+      if sale.id == id
+        return sale.amount
+      end
+    end
+  end
+
 end # end of class

@@ -47,26 +47,26 @@ describe 'testing Sale class' do
     expect( proc {list_of_sales.sample.all} ).must_raise(NoMethodError)
   end
 
-  it 'self.find(id) must return the correct sale name' do
-    skip
-    expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale.name)
-  end
+  # it 'self.find(id) must return the sale with that id' do
+  #   # skip
+  #   expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale)
+  # end
 
-  it 'self.find(id) must return a string' do
-    skip
-    expect(FarMar::Sale.find(random_sale.id)).must_be_instance_of(String)
+  it 'self.find(id) must return the amount of the sale' do
+    # skip
+    expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale.amount)
   end
 
   it 'self.find(id) must throw ArgError if a non-fixnum argument is passed' do
-    skip
-    expect( proc { FarMar::Sale.find(random_sale.name) } ).must_raise(ArgumentError)
+    # skip
+    expect( proc { FarMar::Sale.find("laurenEFB") } ).must_raise(ArgumentError)
     expect( proc { FarMar::Sale.find([1,3,40585]) } ).must_raise(ArgumentError)
     # expect( proc { FarMar::Sale.find({1: "forty"}) } ).must_raise(ArgumentError)
     expect( proc { FarMar::Sale.find(1493.33402382) } ).must_raise(ArgumentError)
   end
 
   it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
-    skip
+    # skip
     expect( proc {list_of_sales.sample.find(random_sale.id)} ).must_raise(NoMethodError)
   end
 
