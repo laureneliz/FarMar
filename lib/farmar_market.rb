@@ -39,7 +39,6 @@ class FarMar::Market
     self.all.each do |market|
       if market.id == id
         return market.name
-        break
       end
     end
   end

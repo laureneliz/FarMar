@@ -26,5 +26,14 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return vendors
   end
 
+  def self.find(id)
+    id.class != Fixnum ? raise(ArgumentError) : id
+
+    self.all.each do |vendor|
+      if vendor.id == id
+        return vendor.name
+      end
+    end
+  end
 
 end # end of Vendor
