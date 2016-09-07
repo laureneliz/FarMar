@@ -1,5 +1,6 @@
 require_relative '../farmar.rb'
 require 'awesome_print'
+require_relative './farmar_vendor'
 
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -41,6 +42,17 @@ class FarMar::Market
         return market
       end
     end
+  end
+
+  def vendors
+    vendors = []
+    all_vendors = FarMar::Vendor.all
+    all_vendors.each do |vendor|
+      if vendor.market_id == self.id
+        vendors << vendor
+      end
+    end
+    return vendors
   end
 
 end

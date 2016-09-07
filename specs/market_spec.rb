@@ -85,9 +85,13 @@ describe 'testing Market class' do
   end
 
   it 'vendors method must return the correct vendors for a market' do
+    array_of_vendor_names = []
+    non_random_market.vendors.each do |vendor|
+      array_of_vendor_names << vendor.name
+    end
     expect(non_random_market.vendors.length).must_equal(10)
-    expect(non_random_market.vendors).must_include("Pagac, Langosh and Bogan")
-    expect(non_random_market.vendors).must_include("Schaden Group")
+    expect(array_of_vendor_names).must_include("Pagac, Langosh and Bogan")
+    expect(array_of_vendor_names).must_include("Schaden Group")
   end
 
 end # end of describe
