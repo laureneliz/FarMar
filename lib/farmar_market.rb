@@ -4,6 +4,8 @@ require 'awesome_print'
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
 
+  MARKETS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/markets.csv')
+
   def initialize(hash)
     @id = hash[:id].to_i
     @name = hash[:name]
@@ -12,13 +14,12 @@ class FarMar::Market
     @county = hash[:county]
     @state = hash[:state]
     @zip = hash[:zip]
-    @@all_markets = []
 
   end
 
-  def self.read_in_csv(csv_file)
+  def self.all
     markets = []
-    CSV.open(csv_file).each do |line|
+    MARKETS.each do |line|
       market_hash = {}
       market_hash[:id] = line[0]
       market_hash[:name] = line[1]
@@ -29,15 +30,11 @@ class FarMar::Market
       market_hash[:zip] = line[6]
       markets << FarMar::Market.new(market_hash)
     end
-    @@all_markets = markets
-  end
-
-  def self.all
-    @@all_markets
+    return markets
   end
 
   def self.find(id)
-    @@all_markets.each do |market|
+    self.all.each do |market|
       if market.id == id
         return market.name
         break
@@ -46,10 +43,6 @@ class FarMar::Market
   end
 
 end
-# #
-# marketlist = FarMar::Market.read_in_csv('//Users/laurenfries/ada/week-5/farmar/support/markets.csv')
-# #
-# random_market = FarMar::Market.all.sample
-# puts random_market.name
-# puts random_market.id
-# puts FarMar::Market.find(random_market.id)
+#
+# a = FarMar::Market.all
+# ap a
