@@ -4,14 +4,13 @@ require_relative '../lib/farmar_market'
 
 describe 'testing market class' do
 
-  list_of_markets = FarMar::Market.read_in_csv('//Users/laurenfries/ada/week-5/farmar/support/markets.csv')
+  let(:list_of_markets) {FarMar::Market.all }
 
-  it 'market class should exist' do
-    expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
+  it 'MARKETS constant should exist' do
+
   end
 
-  it 'self.read_in_csv method should return an array of Market objects' do
-    expect(list_of_markets).must_be_instance_of(Array)
+  it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
   end
 
@@ -32,8 +31,9 @@ describe 'testing market class' do
   end
 
   it 'self.all array should contain all markets, including a random sampling of market names' do
+    # i can't figure out how to do this with a let. :(
     array_of_names = []
-    FarMar::Market.all.each do |market|
+    list_of_markets.each do |market|
       array_of_names << market.name
     end
     expect(array_of_names.include?("People's Co-op Farmers Market")).must_equal(true)
