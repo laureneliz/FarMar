@@ -2,16 +2,18 @@ require_relative 'spec_helper'
 require_relative '../lib/farmar_market'
 
 
-describe 'testing market class' do
+describe 'testing Market class' do
 
-  let(:list_of_markets) {FarMar::Market.all }
-
-  it 'MARKETS constant should exist' do
-
-  end
+  let(:list_of_markets) { FarMar::Market.all }
+  let(:random_market) { FarMar::Market.all.sample}
 
   it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
+  end
+
+  it 'MARKETS constant should exist' do
+    skip
+    expect(FarMar::Market.MARKETS).must_be_instance_of(Array)
   end
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
@@ -47,9 +49,11 @@ describe 'testing market class' do
   end
 
   it 'self.find(id) must return the correct market name' do
-    random_market = FarMar::Market.all.sample
     expect(FarMar::Market.find(random_market.id)).must_equal(random_market.name)
   end
 
+  it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
+    expect( proc {list_of_markets.sample.find(random_market.id)} ).must_raise(NoMethodError)
+  end
 
 end # end of describe
