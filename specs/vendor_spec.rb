@@ -4,6 +4,7 @@ require_relative '../lib/farmar_vendor'
 describe 'testing Vendor class' do
 
   let(:list_of_vendors) { FarMar::Vendor.all }
+  let(:random_vendor) { FarMar::Vendor.all.sample }
 
   it 'Vendor class should exist' do
     expect(list_of_vendors.sample).must_be_instance_of(FarMar::Vendor)
@@ -36,6 +37,18 @@ describe 'testing Vendor class' do
 
   it 'self.all should be a class method, and thus raise method error if called on an instance' do
     expect( proc {list_of_vendors.sample.all} ).must_raise(NoMethodError)
+  end
+
+  it 'self.find(id) must return the correct vendor name' do
+    expect(FarMar::Vendor.find(random_vendor.id)).must_equal(random_vendor.name)
+  end
+
+  it 'self.find(id) must return a string' do
+    expect(FarMar::Vendor.find(random_vendor.id)).must_be_instance_of(String)
+  end
+
+  it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
+    expect( proc {list_of_vendors.sample.find(random_vendor.id)} ).must_raise(NoMethodError)
   end
 
 end # end of describe

@@ -34,6 +34,8 @@ class FarMar::Market
   end
 
   def self.find(id)
+    id.class != Fixnum ? raise(ArgumentError) : id
+
     self.all.each do |market|
       if market.id == id
         return market.name

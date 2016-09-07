@@ -52,6 +52,17 @@ describe 'testing Market class' do
     expect(FarMar::Market.find(random_market.id)).must_equal(random_market.name)
   end
 
+  it 'self.find(id) must return a string' do
+    expect(FarMar::Market.find(random_market.id)).must_be_instance_of(String)
+  end
+
+  it 'self.find(id) must throw ArgError if a non-fixnum argument is passed' do
+    expect( proc { FarMar::Market.find(random_market.name) } ).must_raise(ArgumentError)
+    expect( proc { FarMar::Market.find([1,3,40585]) } ).must_raise(ArgumentError)
+    # expect( proc { FarMar::Market.find({1: "forty"}) } ).must_raise(ArgumentError)
+    expect( proc { FarMar::Market.find(1493.33402382) } ).must_raise(ArgumentError)
+  end
+
   it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
     expect( proc {list_of_markets.sample.find(random_market.id)} ).must_raise(NoMethodError)
   end
