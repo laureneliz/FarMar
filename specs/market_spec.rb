@@ -6,6 +6,7 @@ describe 'testing Market class' do
 
   let(:list_of_markets) { FarMar::Market.all }
   let(:random_market) { FarMar::Market.all.sample}
+  let(:non_random_market) {FarMar::Market.find(69)}
 
   it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
@@ -26,6 +27,9 @@ describe 'testing Market class' do
     expect(list_of_markets.sample.state).must_be_instance_of(String)
     expect(list_of_markets.sample.zip).must_be_instance_of(String)
   end
+
+
+########### self.all method
 
   it 'self.all should return an array of all markets' do
     expect(list_of_markets).must_be_instance_of(Array)
@@ -48,12 +52,15 @@ describe 'testing Market class' do
     expect( proc {list_of_markets.sample.all} ).must_raise(NoMethodError)
   end
 
+########### self.find method
   it 'self.find(id) must return the correct market name' do
+    #changed this method, please ignore
+    skip
     expect(FarMar::Market.find(random_market.id)).must_equal(random_market.name)
   end
 
-  it 'self.find(id) must return a string' do
-    expect(FarMar::Market.find(random_market.id)).must_be_instance_of(String)
+  it 'self.find(id) must return a market' do
+    expect(FarMar::Market.find(random_market.id)).must_be_instance_of(FarMar::Market)
   end
 
   it 'self.find(id) must throw ArgError if a non-fixnum argument is passed' do
@@ -65,6 +72,22 @@ describe 'testing Market class' do
 
   it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
     expect( proc {list_of_markets.sample.find(random_market.id)} ).must_raise(NoMethodError)
+  end
+
+########### vendors method
+
+  it 'vendors method should return an array' do
+    expect(random_market.vendors).must_be_instance_of(Array)
+  end
+
+  it 'vendors method\'s returned array must contain Vendor objects' do
+    expect(random_market.vendors.sample).must_be_instance_of(FarMar::Vendor)
+  end
+
+  it 'vendors method must return the correct vendors for a market' do
+    expect(non_random_market.vendors.length).must_equal(10)
+    expect(non_random_market.vendors).must_include("Pagac, Langosh and Bogan")
+    expect(non_random_market.vendors).must_include("Schaden Group")
   end
 
 end # end of describe
