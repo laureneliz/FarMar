@@ -25,7 +25,7 @@ describe 'testing Product class' do
 
   it 'self.all should return an array of all products' do
     expect(list_of_products).must_be_instance_of(Array)
-    expect(list_of_products.length).must_equal(500)
+    expect(list_of_products.length).must_equal(8193)
   end
 
   it 'self.all array should contain all products, including a random sampling of product names' do
