@@ -40,4 +40,17 @@ class FarMar::Product
     return found_vendor
   end
 
+  # searches all sales to find the sales where the product was sold. 
+  def sales
+    found_sales = []
+    product_id = self.id
+    FarMar::Sale.all.each do |sale|
+      if sale.product_id == product_id
+        found_sales << sale
+      end
+    end
+    return found_sales
+  end
+
+
 end

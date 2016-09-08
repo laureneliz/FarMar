@@ -72,6 +72,7 @@ describe 'testing Product instance methods' do
 
   let(:random_product) { FarMar::Product.all.sample}
   let(:non_random_product) { FarMar::Product.find(1416)}
+  let(:array) { Array.new }
 
  #########vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
   it 'vendor method returns a Vendor' do
