@@ -45,11 +45,11 @@ describe 'testing Product class' do
   end
 
   it 'self.find(id) must return the correct product name' do
-    expect(FarMar::Product.find(random_product.id)).must_equal(random_product.name)
+    expect(FarMar::Product.find(random_product.id).name).must_equal(random_product.name)
   end
 
-  it 'self.find(id) must return a string' do
-    expect(FarMar::Product.find(random_product.id)).must_be_instance_of(String)
+  it 'self.find(id) must return a a Product' do
+    expect(FarMar::Product.find(random_product.id)).must_be_instance_of(FarMar::Product)
   end
 
   it 'self.find(id) must throw ArgError if a non-fixnum argument is passed' do
