@@ -41,26 +41,15 @@ class FarMar::Sale
   end
 
   def vendor
-    vendor_variable = nil
-    all_vendors = FarMar::Vendor.all
-    all_vendors.each do |vendor|
-      if vendor.id == self.vendor_id
-        vendor_variable = vendor
-      end
-    end
-    return vendor_variable
+    id = self.vendor_id
+    found_vendor = FarMar::Vendor.find(id)
+    return found_vendor
   end
 
   def product
-    product_variable = nil
-    all_products = FarMar::Product.all
-    all_products.each do |product|
-      if product.id == self.product_id
-        product_variable = product
-      end
-    # break
-    end
-    return product_variable
+    id = self.product_id
+    found_product = FarMar::Product.find(id)
+    return found_product
   end
 
 end # end of class
