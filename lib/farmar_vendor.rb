@@ -1,5 +1,6 @@
 require_relative '../farmar.rb'
 require 'awesome_print'
+require_relative 'farmar_market'
 
 class FarMar::Vendor
   attr_reader :id, :name, :num_employees, :market_id
@@ -26,6 +27,7 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return vendors
   end
 
+  # this method called on the class Vendor, finds a particular Vendor with the ID it is given.
   def self.find(id)
     id.class != Fixnum ? raise(ArgumentError) : id
 
@@ -34,6 +36,12 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
         return vendor
       end
     end
+  end
+
+  def market
+    id = self.market_id
+    found_market = FarMar::Market.find(id)
+    return found_market
   end
 
 end # end of Vendor
