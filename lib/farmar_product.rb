@@ -28,7 +28,7 @@ class FarMar::Product
 
     self.all.each do |product|
       if product.id == id
-        return product.name
+        return product
       end
     end
   end
