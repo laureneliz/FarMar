@@ -92,7 +92,7 @@ describe 'testing Vendor instance methods ' do
   end
 
 
-  #### sales method #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+  #### sales method #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
 
   it 'sales must return an array' do
     expect(random_vendor.sales).must_be_instance_of(Array)
@@ -110,4 +110,18 @@ describe 'testing Vendor instance methods ' do
     expect(array).must_include(8077)
     expect(array).must_include(8080)
   end
+
+  ####### revenue method
+  #revenue: returns the the sum of all of the vendor's sales (in cents)
+
+
+  it 'revenue method must return a fixnum' do
+    expect(random_vendor.revenue).must_be_instance_of(Fixnum)
+  end
+
+  it 'revenue method must be the correct amount of revenue' do
+    expect(not_random_vendor.revenue).must_equal(43742)
+  end
+
+
 end # end of describe
