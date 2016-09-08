@@ -70,6 +70,15 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return found_sales
   end
 
+  # takes all sales and adds together the amount.
+  def revenue
+    found_sales = sales
+    revenue = 0
+    found_sales.each do |sale|
+      revenue += sale.amount
+    end
+    return revenue
+  end
 
 
 end # end of Vendor
