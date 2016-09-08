@@ -10,6 +10,8 @@ describe 'testing Sale class' do
   let(:random_sale) { FarMar::Sale.all.sample }
   let(:not_random_sale) { FarMar::Sale.find(1212) }
   let(:not_random_vendor) { FarMar::Vendor.find(265) }
+  let(:not_random_product) { FarMar::Product.find(835)}
+  let(:array) { Array.new }
 
   it 'sale class should exist' do
     expect(list_of_sales.sample).must_be_instance_of(FarMar::Sale)
@@ -21,7 +23,7 @@ describe 'testing Sale class' do
   end
 
 
-########### self.all method
+ ########### self.all method
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
@@ -54,7 +56,7 @@ describe 'testing Sale class' do
     expect( proc {list_of_sales.sample.all} ).must_raise(NoMethodError)
   end
 
-########### self.find method
+ ########### self.find method
 
   # it 'self.find(id) must return the sale with that id' do
   #   # skip
@@ -79,21 +81,35 @@ describe 'testing Sale class' do
     expect( proc {list_of_sales.sample.find(random_sale.id)} ).must_raise(NoMethodError)
   end
 
-########### vendor method
+ ########### vendor method
 
   it 'vendor method should return a vendor' do
     expect(random_sale.vendor).must_be_instance_of(FarMar::Vendor)
   end
 
   it 'vendor method should only return one vendor' do
-    vendor = []
-    vendor << random_sale.vendor
+    array << random_sale.vendor
     expect(vendor.length).must_equal(1)
   end
 
   it 'vendor method must return the correct vendor' do
     # the vendor ID is 265 of the not_random_sale.... maybe this will work?
     expect(not_random_sale.vendor.name).must_equal(not_random_vendor.name)
+  end
+
+  ########### product method
+
+  it 'product method should return a product' do
+    expect(random_sale.product).must_be_instance_of(FarMar::Product)
+  end
+
+  it 'product method must return only one product' do
+    array << random_sale.product
+    expect(array.length).must_equal(1)
+  end
+
+  it 'product method must return the correct product' do
+    expect(not_random_sale.product.name).must_equal(not_random_product.name)
   end
 
 end # end of describe
