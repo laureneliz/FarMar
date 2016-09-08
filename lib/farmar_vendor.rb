@@ -57,9 +57,16 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     end
     return found_products
   end
-  #
-  # def sales
-  #   found_sales = []
-  # end 
+
+  def sales
+    found_sales = []
+    vendor_id = self.id
+    FarMar::Sale.all.each do |sale|
+      if sale.vendor_id == vendor_id
+        found_sales << sale
+      end
+    end
+    return found_sales
+  end
 
 end # end of Vendor
