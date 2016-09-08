@@ -89,7 +89,7 @@ describe 'testing Sale class' do
 
   it 'vendor method should only return one vendor' do
     array << random_sale.vendor
-    expect(vendor.length).must_equal(1)
+    expect(array.length).must_equal(1)
   end
 
   it 'vendor method must return the correct vendor' do
