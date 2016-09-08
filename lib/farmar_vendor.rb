@@ -46,14 +46,20 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return found_market
   end
 
+  # this method searches the Products for instances that match this Vendor and shovels them into an array.
   def products
-    products = []
+    found_products = []
     id = self.id
     FarMar::Product.all.each do |product|
       if product.vendor_id == id
-        products << product
+        found_products << product
       end
     end
-    return products
+    return found_products
   end
+  #
+  # def sales
+  #   found_sales = []
+  # end 
+
 end # end of Vendor
