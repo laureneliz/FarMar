@@ -1,6 +1,7 @@
 require_relative '../farmar.rb'
 require 'date'
 require_relative './farmar_vendor'
+require_relative './farmar_product'
 
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
@@ -48,6 +49,18 @@ class FarMar::Sale
       end
     end
     return vendor_variable
+  end
+
+  def product
+    product_variable = nil
+    all_products = FarMar::Product.all
+    all_products.each do |product|
+      if product.id == self.vendor_id
+        product_variable = product
+      end
+    # break
+    end
+    return product_variable
   end
 
 end # end of class
