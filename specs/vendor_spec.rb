@@ -5,12 +5,6 @@ require_relative '../lib/farmar_market'
 describe 'testing Vendor class and class methods' do
 
   let(:list_of_vendors) { FarMar::Vendor.all }
-  let(:random_vendor) { FarMar::Vendor.all.sample }
-  let(:random_market) { FarMar::Market.all.sample }
-  let(:vendors_by_market) { FarMar::Vendor.by_market(random_market.id)}
-  let(:non_random_market) { FarMar::Market.find(300)}
-  let(:array) { Array.new }
-
 
   it 'Vendor class should exist' do
     expect(list_of_vendors.sample).must_be_instance_of(FarMar::Vendor)
@@ -23,6 +17,18 @@ describe 'testing Vendor class and class methods' do
     expect(list_of_vendors.sample.num_employees).must_be_instance_of(Fixnum)
     expect(list_of_vendors.sample.market_id).must_be_instance_of(Fixnum)
   end
+
+end
+
+describe 'testing vendor class methods' do
+
+  let(:list_of_vendors) { FarMar::Vendor.all }
+  let(:random_vendor) { FarMar::Vendor.all.sample }
+  let(:random_market) { FarMar::Market.all.sample }
+  let(:vendors_by_market) { FarMar::Vendor.by_market(random_market.id)}
+  let(:non_random_market) { FarMar::Market.find(300)}
+  let(:array) { Array.new }
+
 
   it 'self.all should return an array of all vendors' do
     expect(list_of_vendors).must_be_instance_of(Array)
@@ -137,7 +143,7 @@ describe 'testing Vendor instance methods ' do
     if random_vendor.sales.length > 0
       expect(random_vendor.sales.sample).must_be_instance_of(FarMar::Sale)
     else
-      expect(random_vendor.sales.sample).must_be_instance_of(NilClass)  
+      expect(random_vendor.sales.sample).must_be_instance_of(NilClass)
     end
   end
 
