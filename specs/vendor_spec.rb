@@ -1,10 +1,12 @@
 require_relative 'spec_helper'
 require_relative '../lib/farmar_vendor'
+require_relative '../lib/farmar_market'
 
-describe 'testing Vendor class' do
+describe 'testing Vendor class and class methods' do
 
   let(:list_of_vendors) { FarMar::Vendor.all }
   let(:random_vendor) { FarMar::Vendor.all.sample }
+
 
   it 'Vendor class should exist' do
     expect(list_of_vendors.sample).must_be_instance_of(FarMar::Vendor)
@@ -45,6 +47,28 @@ describe 'testing Vendor class' do
 
   it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
     expect( proc {list_of_vendors.sample.find(random_vendor.id)} ).must_raise(NoMethodError)
+  end
+
+end
+
+describe 'testing Vendor instance methods ' do
+  ############ market method
+  let(:random_vendor) { FarMar::Vendor.all.sample }
+  let(:not_random_vendor) { FarMar::Vendor.find( 1804 )}
+  let(:not_random_market) { FarMar::Market.find(338)}
+  let(:array) { Array.new }
+
+  it 'market method should return a market' do
+    expect(random_vendor.market).must_be_instance_of(FarMar::Market)
+  end
+
+  it 'market method must return only one market' do
+    array << random_vendor.market
+    expect(array.length).must_equal(1)
+  end
+
+  it 'market method must return the correct market' do
+    expect(not_random_vendor.market.name).must_equal(not_random_market.name)
   end
 
 end # end of describe
