@@ -4,14 +4,10 @@ require_relative '../lib/farmar_vendor'
 require 'date'
 
 
-describe 'testing Sale class' do
+describe 'testing Sale class and class methods' do
 
   let(:list_of_sales) { FarMar::Sale.all }
   let(:random_sale) { FarMar::Sale.all.sample }
-  let(:not_random_sale) { FarMar::Sale.find(1212) }
-  let(:not_random_vendor) { FarMar::Vendor.find(265) }
-  let(:not_random_product) { FarMar::Product.find(835)}
-  let(:array) { Array.new }
 
   it 'sale class should exist' do
     expect(list_of_sales.sample).must_be_instance_of(FarMar::Sale)
@@ -81,7 +77,16 @@ describe 'testing Sale class' do
     expect( proc {list_of_sales.sample.find(random_sale.id)} ).must_raise(NoMethodError)
   end
 
+end # end of 1st describe
+
+describe ' testing instance methods for Sale class' do
  ########### vendor method
+
+ let(:random_sale) { FarMar::Sale.all.sample }
+ let(:not_random_sale) { FarMar::Sale.find(1212) }
+ let(:not_random_vendor) { FarMar::Vendor.find(265) }
+ let(:not_random_product) { FarMar::Product.find(835)}
+ let(:array) { Array.new }
 
   it 'vendor method should return a vendor' do
     expect(random_sale.vendor).must_be_instance_of(FarMar::Vendor)
