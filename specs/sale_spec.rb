@@ -6,6 +6,7 @@ describe 'testing Sale class' do
 
   let(:list_of_sales) { FarMar::Sale.all }
   let(:random_sale) { FarMar::Sale.all.sample}
+  let(:not_random_sale) { FarMar::Sale.find(1212)}
 
   it 'sale class should exist' do
     expect(list_of_sales.sample).must_be_instance_of(FarMar::Sale)
@@ -15,6 +16,9 @@ describe 'testing Sale class' do
     skip
     expect(FarMar::Sale.SALES).must_be_instance_of(Array)
   end
+
+
+########### self.all method
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
@@ -47,6 +51,8 @@ describe 'testing Sale class' do
     expect( proc {list_of_sales.sample.all} ).must_raise(NoMethodError)
   end
 
+########### self.find method
+
   # it 'self.find(id) must return the sale with that id' do
   #   # skip
   #   expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale)
@@ -68,6 +74,21 @@ describe 'testing Sale class' do
   it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
     # skip
     expect( proc {list_of_sales.sample.find(random_sale.id)} ).must_raise(NoMethodError)
+  end
+
+########### vendor method
+
+  it 'vendor method should return a vendor' do
+    expect(random_sale.vendor).must_be_instance_of(FarMar::Vendor)
+  end
+
+  it 'vendor method should only return one vendor' do
+    expect(random_sale.vendor.to_a.length).must_equal(1)
+  end
+
+  it 'vendor method must return the correct vendor' do
+    # the vendor ID is 265 of the not_random_sale.... maybe this will work?
+    expect(not_random_sale.vendor).must_equal(FarMar::Vendor.find(265))
   end
 
 end # end of describe

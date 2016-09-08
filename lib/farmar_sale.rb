@@ -1,5 +1,6 @@
 require_relative '../farmar.rb'
 require 'date'
+require_relative './farmar_vendor'
 
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
