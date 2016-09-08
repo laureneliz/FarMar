@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../lib/farmar_product'
 require_relative '../lib/farmar_vendor'
+require_relative '../lib/farmar_sale'
 
 describe 'testing Product class' do
 
@@ -71,6 +72,7 @@ describe 'testing Product instance methods' do
 
   let(:random_product) { FarMar::Product.all.sample}
   let(:non_random_product) { FarMar::Product.find(1416)}
+
  #########vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
   it 'vendor method returns a Vendor' do
     expect(random_product.vendor).must_be_instance_of(FarMar::Vendor)
@@ -78,6 +80,27 @@ describe 'testing Product instance methods' do
 
   it 'vendor method returns the correct Vendor' do
     expect(non_random_product.vendor.name).must_equal("Luettgen-Koss")
+  end
+
+  ################# #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+
+  it 'sales method must return an array' do
+    expect(random_product.sales).must_be_instance_of(Array)
+  end
+
+  it 'sales method\'s returned array must contain instances of Sale' do
+    if random_product.sales.length > 0
+      expect(random_product.sales.sample).must_be_instance_of(FarMar::Sale)
+    end
+  end
+
+  it 'sales method must return the correct sales for a product' do
+    non_random_product.sales.each do |sale|
+      array << sale.id
+    end
+    expect(array).must_include(2072)
+    expect(array).must_include(2073)
+    expect(array).must_include(2074)
   end
 
 
