@@ -51,13 +51,23 @@ describe 'testing Vendor class and class methods' do
     expect( proc {list_of_vendors.sample.find(random_vendor.id)} ).must_raise(NoMethodError)
   end
 
+  it 'self.find(id) must throw ArgError if a non-fixnum argument is passed' do
+    expect( proc { FarMar::Vendor.find(random_vendor.name) } ).must_raise(ArgumentError)
+    expect( proc { FarMar::Vendor.find([1,3,40585]) } ).must_raise(ArgumentError)
+    # expect( proc { FarMar::Market.find({1: "forty"}) } ).must_raise(ArgumentError)
+    expect( proc { FarMar::Vendor.find(1493.33402382) } ).must_raise(ArgumentError)
+  end
+
   #################self.by_market(market_id): returns all of the vendors with the given market_id
   it 'self.by_market(market_id) method returns an array' do
     expect(vendors_by_market).must_be_instance_of(Array)
   end
 
-  it 'self.by_market(market_id) method ' do
-
+  it 'self.by_market(market_id) method should only take a Fixnum as an arugment, else should throw an ArgError' do
+    expect( proc { FarMar::Vendor.by_market(random_vendor.name) } ).must_raise(ArgumentError)
+    expect( proc { FarMar::Vendor.by_market([1,3,40585]) } ).must_raise(ArgumentError)
+    # expect( proc { FarMar::Market.find({1: "forty"}) } ).must_raise(ArgumentError)
+    expect( proc { FarMar::Vendor.by_market(1493.33402382) } ).must_raise(ArgumentError)
   end
 
 end # end of class methods search
