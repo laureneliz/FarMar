@@ -40,7 +40,7 @@ class FarMar::Product
     return found_vendor
   end
 
-  # searches all sales to find the sales where the product was sold. 
+  # searches all sales to find the sales where the product was sold.
   def sales
     found_sales = []
     product_id = self.id
@@ -52,5 +52,10 @@ class FarMar::Product
     return found_sales
   end
 
+  def number_of_sales
+    sales_array = sales
+    return sales_array.length
+  end
 
-end
+
+end # end of class

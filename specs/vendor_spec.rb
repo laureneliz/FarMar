@@ -142,8 +142,6 @@ describe 'testing Vendor instance methods ' do
   it 'the elements of the array sales returns must be Sales' do
     if random_vendor.sales.length > 0
       expect(random_vendor.sales.sample).must_be_instance_of(FarMar::Sale)
-    else
-      expect(random_vendor.sales.sample).must_be_instance_of(NilClass)
     end
   end
 
