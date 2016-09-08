@@ -104,5 +104,17 @@ describe 'testing Product instance methods' do
     expect(array).must_include(2074)
   end
 
+  ########number_of_sales: returns the number of times this product has been sold.
+
+  it 'number_of_sales method must return a fixnum' do
+    if random_product.sales.length > 0
+      expect(random_product.number_of_sales).must_be_instance_of(Fixnum)
+    end
+  end
+
+  it 'number_of_sales method must return the correct number of sales' do
+    expect(non_random_product.number_of_sales).must_equal(3)
+  end
+
 
 end
