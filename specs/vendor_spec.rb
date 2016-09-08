@@ -85,7 +85,7 @@ describe 'testing Vendor instance methods ' do
 
   it 'the products method must return the correct products' do
     not_random_vendor.products.each do |product|
-      array << product
+      array << product.name
     end
     expect(array).must_include("Young Pretzel")
     expect(array).must_include("Roasted Burrito")

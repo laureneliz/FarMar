@@ -1,6 +1,7 @@
 require_relative '../farmar.rb'
 require 'awesome_print'
 require_relative 'farmar_market'
+require_relative 'farmar_product'
 
 class FarMar::Vendor
   attr_reader :id, :name, :num_employees, :market_id
@@ -45,4 +46,14 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return found_market
   end
 
+  def products
+    products = []
+    id = self.id
+    FarMar::Product.all.each do |product|
+      if product.vendor_id == id
+        products << product
+      end
+    end
+    return products
+  end
 end # end of Vendor
