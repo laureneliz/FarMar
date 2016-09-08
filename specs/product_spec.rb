@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require_relative '../lib/farmar_product'
+require_relative '../lib/farmar_vendor'
 
 describe 'testing Product class' do
 
@@ -64,4 +65,20 @@ describe 'testing Product class methods' do
     expect( proc {list_of_products.sample.find(random_product.id)} ).must_raise(NoMethodError)
   end
 
-end # end of describe
+end # end of describe for class methods
+
+describe 'testing Product instance methods' do
+
+  let(:random_product) { FarMar::Product.all.sample}
+  let(:non_random_product) { FarMar::Product.find(1416)}
+ #########vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+  it 'vendor method returns a Vendor' do
+    expect(random_product.vendor).must_be_instance_of(FarMar::Vendor)
+  end
+
+  it 'vendor method returns the correct Vendor' do
+    expect(non_random_product.vendor.name).must_equal("Luettgen-Koss")
+  end
+
+
+end
