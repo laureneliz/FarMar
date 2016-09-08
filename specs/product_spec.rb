@@ -4,7 +4,6 @@ require_relative '../lib/farmar_product'
 describe 'testing Product class' do
 
   let(:list_of_products) { FarMar::Product.all }
-  let(:random_product) { FarMar::Product.all.sample}
 
   it 'product class should exist' do
     expect(list_of_products.sample).must_be_instance_of(FarMar::Product)
@@ -17,6 +16,13 @@ describe 'testing Product class' do
     expect(list_of_products.sample.vendor_id).must_be_instance_of(Fixnum)
 
   end
+
+end # end of 1st describe
+
+describe 'testing Product class methods' do
+
+  let(:list_of_products) { FarMar::Product.all }
+  let(:random_product) { FarMar::Product.all.sample}
 
   it 'self.all should return an array of all products' do
     expect(list_of_products).must_be_instance_of(Array)
