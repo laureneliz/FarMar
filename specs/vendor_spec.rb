@@ -79,7 +79,7 @@ describe 'testing Vendor instance methods ' do
     expect(random_vendor.products).must_be_instance_of(Array)
   end
 
-  it 'the elements of the arry products returns must be Products' do
+  it 'the elements of the array products returns must be Products' do
     expect(random_vendor.products.sample).must_be_instance_of(FarMar::Product)
   end
 
@@ -92,4 +92,22 @@ describe 'testing Vendor instance methods ' do
   end
 
 
+  #### sales method #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+
+  it 'sales must return an array' do
+    expect(random_vendor.sales).must_be_instance_of(Array)
+  end
+
+  it 'the elements of the array sales returns must be Sales' do
+    expect(random_vendor.sales.sample).must_be_instance_of(FarMar::Sale)
+  end
+
+  it 'the sales method must return the correct sales' do
+    not_random_vendor.sales.each do |sale|
+      array << sale.id
+    end
+    expect(array).must_include(8073)
+    expect(array).must_include(8077)
+    expect(array).must_include(8080)
+  end
 end # end of describe
