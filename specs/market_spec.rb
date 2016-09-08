@@ -6,6 +6,7 @@ describe 'testing Market class and class methods' do
 
   let(:list_of_markets) { FarMar::Market.all }
   let(:random_market) { FarMar::Market.all.sample}
+  let (:array) { Array.new }
 
   it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
@@ -23,7 +24,7 @@ describe 'testing Market class and class methods' do
   end
 
 
-########### self.all method
+ ########### self.all method
 
   it 'self.all should return an array of all markets' do
     expect(list_of_markets).must_be_instance_of(Array)
@@ -32,9 +33,8 @@ describe 'testing Market class and class methods' do
 
   it 'self.all array should contain all markets, including a random sampling of market names' do
     # i can't figure out how to do this with a let. :(
-    array_of_names = []
     list_of_markets.each do |market|
-      array_of_names << market.name
+      array << market.name
     end
     expect(array_of_names.include?("People's Co-op Farmers Market")).must_equal(true)
     expect(array_of_names.include?("Medford Farmers Market")).must_equal(true)
@@ -46,12 +46,7 @@ describe 'testing Market class and class methods' do
     expect( proc {list_of_markets.sample.all} ).must_raise(NoMethodError)
   end
 
-########### self.find method
-  it 'self.find(id) must return the correct market name' do
-    #changed this method, please ignore
-    skip
-    expect(FarMar::Market.find(random_market.id)).must_equal(random_market.name)
-  end
+ ########### self.find method
 
   it 'self.find(id) must return a market' do
     expect(FarMar::Market.find(random_market.id)).must_be_instance_of(FarMar::Market)
@@ -74,8 +69,8 @@ describe 'testing Market instance methods' do
 
   let(:random_market) { FarMar::Market.all.sample}
   let(:non_random_market) {FarMar::Market.find(69)}
-  
-########### vendors method
+
+ ########### vendors method
 
   it 'vendors method should return an array' do
     expect(random_market.vendors).must_be_instance_of(Array)
