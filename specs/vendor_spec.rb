@@ -43,10 +43,6 @@ describe 'testing Vendor class' do
     expect(FarMar::Vendor.find(random_vendor.id)).must_be_instance_of(FarMar::Vendor)
   end
 
-  it 'self.find(id) must return a string' do
-    expect(FarMar::Vendor.find(random_vendor.id)).must_be_instance_of(String)
-  end
-
   it 'self.find(id) should be a class method, and thus raise method error if called on an instance' do
     expect( proc {list_of_vendors.sample.find(random_vendor.id)} ).must_raise(NoMethodError)
   end

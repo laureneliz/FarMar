@@ -93,7 +93,7 @@ describe 'testing Sale class' do
 
   it 'vendor method must return the correct vendor' do
     # the vendor ID is 265 of the not_random_sale.... maybe this will work?
-    expect(not_random_sale.vendor).must_equal(not_random_vendor)
+    expect(not_random_sale.vendor.name).must_equal(not_random_vendor.name)
   end
 
 end # end of describe

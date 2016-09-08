@@ -13,7 +13,7 @@ describe 'testing Market class' do
   end
 
   it 'MARKETS constant should exist' do
-    # skip
+    skip
     expect(random_market.MARKETS).must_be_instance_of(Array)
   end
 
