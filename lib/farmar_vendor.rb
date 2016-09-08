@@ -38,6 +38,7 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     end
   end
 
+  # this method finds the Market that a Vendor sells at and returns it.
   def market
     id = self.market_id
     found_market = FarMar::Market.find(id)
