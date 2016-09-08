@@ -58,6 +58,7 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return found_products
   end
 
+  # using vendor's id, finds all sales associated with a vendor and shovels them into an array
   def sales
     found_sales = []
     vendor_id = self.id
@@ -68,5 +69,7 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     end
     return found_sales
   end
+
+
 
 end # end of Vendor
