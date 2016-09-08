@@ -80,6 +80,19 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
     return revenue
   end
 
+  # returns list of all vendors that are associated with a given market.
+  def self.by_market(market_id)
+    raise ArgumentError unless market_id.class == Fixnum
+
+    vendors = self.all
+    found_vendors = []
+    vendors.each do |vendor|
+      if vendor.market_id == market_id
+        found_vendors << vendor
+      end
+    end
+    return found_vendors
+  end
 
 
 end # end of Vendor
