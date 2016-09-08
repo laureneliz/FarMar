@@ -2,11 +2,10 @@ require_relative 'spec_helper'
 require_relative '../lib/farmar_market'
 
 
-describe 'testing Market class' do
+describe 'testing Market class and class methods' do
 
   let(:list_of_markets) { FarMar::Market.all }
   let(:random_market) { FarMar::Market.all.sample}
-  let(:non_random_market) {FarMar::Market.find(69)}
 
   it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
@@ -69,6 +68,13 @@ describe 'testing Market class' do
     expect( proc {list_of_markets.sample.find(random_market.id)} ).must_raise(NoMethodError)
   end
 
+end # end of 1st describe
+
+describe 'testing Market instance methods' do
+
+  let(:random_market) { FarMar::Market.all.sample}
+  let(:non_random_market) {FarMar::Market.find(69)}
+  
 ########### vendors method
 
   it 'vendors method should return an array' do
