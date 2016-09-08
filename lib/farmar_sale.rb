@@ -30,6 +30,7 @@ class FarMar::Sale
     return sales
   end
 
+  # called on the class, this method finds a sale by the id given.
   def self.find(id)
     id.class != Fixnum ? raise(ArgumentError) : id
 
@@ -40,12 +41,14 @@ class FarMar::Sale
     end
   end
 
+  # this method takes a sale, grabs that sale's vendor_id, searches the Vendors by that id, and returns the vendor that made that sale.
   def vendor
     id = self.vendor_id
     found_vendor = FarMar::Vendor.find(id)
     return found_vendor
   end
 
+  # this method takes a Sale, grabs that sale's product_id, searches the Products by that id, and returns the Product that was sold during that Sale.
   def product
     id = self.product_id
     found_product = FarMar::Product.find(id)
