@@ -10,11 +10,6 @@ describe 'testing Product class' do
     expect(list_of_products.sample).must_be_instance_of(FarMar::Product)
   end
 
-  it 'PRODUCTS constant should exist' do
-    skip
-    expect(FarMar::Product.PRODUCTS).must_be_instance_of(Array)
-  end
-
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
     expect(list_of_products.sample.id).must_be_instance_of(Fixnum)

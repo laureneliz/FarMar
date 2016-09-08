@@ -13,12 +13,6 @@ describe 'testing Sale class and class methods' do
     expect(list_of_sales.sample).must_be_instance_of(FarMar::Sale)
   end
 
-  it 'SALES constant should exist' do
-    skip
-    expect(FarMar::Sale.SALES).must_be_instance_of(Array)
-  end
-
-
  ########### self.all method
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?

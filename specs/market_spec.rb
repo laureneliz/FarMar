@@ -12,11 +12,6 @@ describe 'testing Market class' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
   end
 
-  it 'MARKETS constant should exist' do
-    skip
-    expect(random_market.MARKETS).must_be_instance_of(Array)
-  end
-
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
     expect(list_of_markets.sample.id).must_be_instance_of(Fixnum)
