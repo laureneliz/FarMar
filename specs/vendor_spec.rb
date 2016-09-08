@@ -39,8 +39,8 @@ describe 'testing Vendor class' do
     expect( proc {list_of_vendors.sample.all} ).must_raise(NoMethodError)
   end
 
-  it 'self.find(id) must return the correct vendor name' do
-    expect(FarMar::Vendor.find(random_vendor.id)).must_equal(random_vendor.name)
+  it 'self.find(id) must return a Vendor' do
+    expect(FarMar::Vendor.find(random_vendor.id)).must_be_instance_of(FarMar::Vendor)
   end
 
   it 'self.find(id) must return a string' do

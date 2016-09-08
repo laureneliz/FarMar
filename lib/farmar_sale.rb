@@ -21,7 +21,7 @@ class FarMar::Sale
       sale_hash = {}
       sale_hash[:id] = line[0].to_i
       sale_hash[:amount] = line[1].to_i
-      sale_hash[:purchase_time] = line[2]
+      sale_hash[:purchase_time] = DateTime.parse(line[2].to_s)
       sale_hash[:vendor_id] = line[3].to_i
       sale_hash[:product_id] = line[4].to_i
       sales << FarMar::Sale.new(sale_hash)
@@ -34,9 +34,20 @@ class FarMar::Sale
 
     self.all.each do |sale|
       if sale.id == id
-        return sale.amount
+        return sale
       end
     end
+  end
+
+  def vendor
+    vendor_variable = nil
+    all_vendors = FarMar::Vendor.all
+    all_vendors.each do |vendor|
+      if vendor.id == self.vendor_id
+        vendor_variable = vendor
+      end
+    end
+    return vendor_variable
   end
 
 end # end of class

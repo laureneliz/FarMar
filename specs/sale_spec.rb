@@ -1,12 +1,15 @@
 require_relative 'spec_helper'
 require_relative '../lib/farmar_sale'
+require_relative '../lib/farmar_vendor'
 require 'date'
+
 
 describe 'testing Sale class' do
 
   let(:list_of_sales) { FarMar::Sale.all }
-  let(:random_sale) { FarMar::Sale.all.sample}
-  let(:not_random_sale) { FarMar::Sale.find(1212)}
+  let(:random_sale) { FarMar::Sale.all.sample }
+  let(:not_random_sale) { FarMar::Sale.find(1212) }
+  let(:not_random_vendor) { FarMar::Vendor.find(265) }
 
   it 'sale class should exist' do
     expect(list_of_sales.sample).must_be_instance_of(FarMar::Sale)
@@ -24,7 +27,7 @@ describe 'testing Sale class' do
   it 'testing data types for attributes' do
     expect(list_of_sales.sample.id).must_be_instance_of(Fixnum)
     expect(list_of_sales.sample.amount).must_be_instance_of(Fixnum)
-    expect(list_of_sales.sample.purchase_time).must_be_instance_of(String)
+    expect(list_of_sales.sample.purchase_time).must_be_instance_of(DateTime)
     expect(list_of_sales.sample.vendor_id).must_be_instance_of(Fixnum)
     expect(list_of_sales.sample.product_id).must_be_instance_of(Fixnum)
 
@@ -58,9 +61,9 @@ describe 'testing Sale class' do
   #   expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale)
   # end
 
-  it 'self.find(id) must return the amount of the sale' do
+  it 'self.find(id) must return a sale' do
     # skip
-    expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale.amount)
+    expect(FarMar::Sale.find(random_sale.id)).must_be_instance_of(FarMar::Sale)
   end
 
   it 'self.find(id) must throw ArgError if a non-fixnum argument is passed' do
@@ -83,12 +86,14 @@ describe 'testing Sale class' do
   end
 
   it 'vendor method should only return one vendor' do
-    expect(random_sale.vendor.to_a.length).must_equal(1)
+    vendor = []
+    vendor << random_sale.vendor
+    expect(vendor.length).must_equal(1)
   end
 
   it 'vendor method must return the correct vendor' do
     # the vendor ID is 265 of the not_random_sale.... maybe this will work?
-    expect(not_random_sale.vendor).must_equal(FarMar::Vendor.find(265))
+    expect(not_random_sale.vendor).must_equal(not_random_vendor)
   end
 
 end # end of describe

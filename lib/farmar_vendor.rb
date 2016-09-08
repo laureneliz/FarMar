@@ -31,7 +31,7 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
 
     self.all.each do |vendor|
       if vendor.id == id
-        return vendor.name
+        return vendor
       end
     end
   end

@@ -13,8 +13,8 @@ describe 'testing Market class' do
   end
 
   it 'MARKETS constant should exist' do
-    skip
-    expect(FarMar::Market.MARKETS).must_be_instance_of(Array)
+    # skip
+    expect(random_market.MARKETS).must_be_instance_of(Array)
   end
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
