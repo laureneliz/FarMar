@@ -6,6 +6,8 @@ describe 'testing Vendor class and class methods' do
 
   let(:list_of_vendors) { FarMar::Vendor.all }
   let(:random_vendor) { FarMar::Vendor.all.sample }
+  let(:random_market) { FarMar::Market.all.sample }
+  let(:vendors_by_market) { FarMar::Vendor.by_market(random_market)}
 
 
   it 'Vendor class should exist' do
@@ -49,7 +51,16 @@ describe 'testing Vendor class and class methods' do
     expect( proc {list_of_vendors.sample.find(random_vendor.id)} ).must_raise(NoMethodError)
   end
 
-end
+  #################self.by_market(market_id): returns all of the vendors with the given market_id
+  it 'self.by_market(market_id) method returns an array' do
+    expect(vendors_by_market).must_be_instance_of(Array)
+  end
+
+  it 'self.by_market(market_id) method ' do
+
+  end
+
+end # end of class methods search
 
 describe 'testing Vendor instance methods ' do
   ############ market method
