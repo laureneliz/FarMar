@@ -33,4 +33,10 @@ class FarMar::Product
     end
   end
 
+  def vendor
+    id = self.vendor_id
+    found_vendor = FarMar::Vendor.find(id)
+    return found_vendor
+  end
+
 end
