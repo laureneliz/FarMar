@@ -36,10 +36,10 @@ describe 'testing Market class and class methods' do
     list_of_markets.each do |market|
       array << market.name
     end
-    expect(array_of_names.include?("People's Co-op Farmers Market")).must_equal(true)
-    expect(array_of_names.include?("Medford Farmers Market")).must_equal(true)
-    expect(array_of_names.include?("Scripps Ranch Farmers Market & Family Festival")).must_equal(true)
-    expect(array_of_names.include?("Warren Farmers Market")).must_equal(true)
+    expect(array).must_include("People's Co-op Farmers Market")
+    expect(array).must_include("Medford Farmers Market")
+    expect(array).must_include("Scripps Ranch Farmers Market & Family Festival")
+    expect(array).must_include("Warren Farmers Market")
   end
 
   it 'self.all should be a class method, and thus raise method error if called on an instance' do
