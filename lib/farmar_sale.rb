@@ -55,7 +55,7 @@ class FarMar::Sale
     product_variable = nil
     all_products = FarMar::Product.all
     all_products.each do |product|
-      if product.id == self.vendor_id
+      if product.id == self.product_id
         product_variable = product
       end
     # break
