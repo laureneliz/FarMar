@@ -199,7 +199,5 @@ describe 'testing optional Vendor methods' do
 
   ##### revenue (date)
 
-end
-
 
 end # end of describe

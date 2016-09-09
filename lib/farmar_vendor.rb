@@ -95,4 +95,21 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
   end
 
 
+  def self.most_revenue(n)
+    raise ArgumentError unless n.class == Fixnum
+
+    vendor_holder = []
+    highest_selling_vendors = []
+    vendors = self.all
+
+    vendors.each do |vendor|
+      rev_array = [vendor, vendor.revenue]
+      vendor_holder << rev_array
+    end
+
+    vendor_holder = vendor_holder.sort_by { |vendor| vendor[1]}
+
+    highest_selling_vendors = vendor_holder.take(n)
+  end
+
 end # end of Vendor
