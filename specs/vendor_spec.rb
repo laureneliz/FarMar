@@ -90,7 +90,7 @@ describe 'testing vendor class methods' do
     expect(vendors_by_market.sample).must_be_instance_of(FarMar::Vendor)
   end
 
-  it 'self.by_market(market_id) must return the correct markets' do
+  it 'self.by_market(market_id) must return the correct vendors' do
     FarMar::Vendor.by_market(non_random_market.id).each do |vendor|
       array << vendor.name
     end
@@ -113,7 +113,7 @@ describe 'testing Vendor instance methods ' do
   it 'market method must return the correct market' do
     expect(not_random_vendor.market.name).must_equal(not_random_market.name)
   end
-  
+
   ######## products method
   ##products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
 

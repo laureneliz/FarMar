@@ -32,7 +32,7 @@ describe 'testing Product class methods' do
   let(:random_product) { FarMar::Product.all.sample}
   let(:random_market) { FarMar::Market.all.sample }
   let(:non_random_vendor) { FarMar::Vendor.find(1416)}
-  let(:products_by_vendor) {FarMar::Vendor.by_market(random_market.id)}
+  let(:products_by_vendor) {FarMar::Product.by_vendor(random_market.id)}
   let(:array) { Array.new }
 
   it 'self.all should return an array of all products' do
@@ -91,7 +91,7 @@ describe 'testing Product class methods' do
   end
 
   it 'self.by_vendor(vendor_id) must return the correct products' do
-    FarMar::Product.by_market(non_random_vendor.id).each do |product|
+    FarMar::Product.by_vendor(non_random_vendor.id).each do |product|
       array << product.name
     end
     expect(array).must_include("Silky Chicken")

@@ -57,5 +57,20 @@ class FarMar::Product
     return sales_array.length
   end
 
+  # returns list of all Products that are associated with a given vendor by searching Products for a given vendor id.
+  def self.by_vendor(vendor_id)
+    raise ArgumentError unless vendor_id.class == Fixnum
+
+    products = self.all
+    found_products = []
+
+    products.each do |product|
+      if product.vendor_id == vendor_id
+        found_products << product
+      end
+    end
+    return found_products
+  end
+
 
 end # end of class
