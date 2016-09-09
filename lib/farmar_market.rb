@@ -34,13 +34,14 @@ class FarMar::Market < FarMar::Shared
   end
 
   def self.find(id)
-    id.class != Fixnum ? raise(ArgumentError) : id
-
-    self.all.each do |market|
-      if market.id == id
-        return market
-      end
-    end
+    super
+    # id.class != Fixnum ? raise(ArgumentError) : id
+    #
+    # self.all.each do |market|
+    #   if market.id == id
+    #     return market
+    #   end
+    # end
   end
 
   def vendors
