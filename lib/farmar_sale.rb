@@ -63,6 +63,15 @@ class FarMar::Sale
       end_time = DateTime.parse(end_time)
     end
 
+    sales = self.all
+    found_sales = []
+
+    sales.each do |sale|
+      if sale.purchase_time.between?(beginning_time,end_time)
+        found_sales << sale
+      end
+    end
+    return found_sales
   end
 
 end # end of class
