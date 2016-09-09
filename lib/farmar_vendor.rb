@@ -1,5 +1,4 @@
 require_relative '../farmar.rb'
-require 'awesome_print'
 require_relative 'farmar_shared'
 
 class FarMar::Vendor < FarMar::Shared
@@ -29,13 +28,14 @@ VENDORS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/vendors.csv')
 
   # this method called on the class Vendor, finds a particular Vendor with the ID it is given.
   def self.find(id)
-    id.class != Fixnum ? raise(ArgumentError) : id
-
-    self.all.each do |vendor|
-      if vendor.id == id
-        return vendor
-      end
-    end
+    super
+    # id.class != Fixnum ? raise(ArgumentError) : id
+    #
+    # self.all.each do |vendor|
+    #   if vendor.id == id
+    #     return vendor
+    #   end
+    # end
   end
 
   # this method finds the Market that a Vendor sells at and returns it.
