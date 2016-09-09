@@ -1,8 +1,7 @@
 require_relative '../farmar.rb'
-require 'awesome_print'
 require_relative './farmar_vendor'
 
-class FarMar::Market
+class FarMar::Market < FarMar::Shared
   attr_reader :id, :name, :address, :city, :county, :state, :zip
 
   MARKETS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/markets.csv')
