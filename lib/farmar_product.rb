@@ -1,6 +1,7 @@
 require_relative '../farmar.rb'
+require_relative 'farmar_shared'
 
-class FarMar::Product
+class FarMar::Product < FarMar::Shared
   attr_reader :id, :name, :vendor_id
 
   PRODUCTS = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/products.csv')
@@ -24,13 +25,14 @@ class FarMar::Product
   end
 
   def self.find(id)
-    id.class != Fixnum ? raise(ArgumentError) : id
-
-    self.all.each do |product|
-      if product.id == id
-        return product
-      end
-    end
+    super
+    # id.class != Fixnum ? raise(ArgumentError) : id
+    #
+    # self.all.each do |product|
+    #   if product.id == id
+    #     return product
+    #   end
+    # end
   end
 
   # finds the Vendor that sells this Product with the Product's id
