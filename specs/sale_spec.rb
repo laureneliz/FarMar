@@ -41,7 +41,7 @@ describe 'testing Sale class methods' do
   let(:array) { Array.new }
   let(:time1) { DateTime.new(2013,11,rand(6..13),rand(0..23),rand(0..59),rand(0..59),'-8')}
   let(:time2) { DateTime.new(2013,11,rand(6..13),rand(0..23),rand(0..59),rand(0..59),'-8')}
-  
+
 
   ########### self.all method
   it 'self.all should return an array of all sales' do
@@ -98,6 +98,11 @@ describe 'testing Sale class methods' do
     end
   end
 
+  it 'self.between should throw ArgError if arguments are not DateTimes or cannot be parsed to DateTimes' do
+    expect( proc {FarMar::Sale.between("sghgsed","4ds,nvbsd") }).must_raise(ArgumentError)
+    expect( proc {FarMar::Sale.between("sghgsed",["4ds,nvbsd", 30238, 238584023]) }).must_raise(ArgumentError)
+
+  end
 
 end # end of 1st describe
 
