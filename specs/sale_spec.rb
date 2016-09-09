@@ -41,6 +41,9 @@ describe 'testing Sale class methods' do
   let(:array) { Array.new }
   let(:time1) { DateTime.new(2013,11,rand(6..13),rand(0..23),rand(0..59),rand(0..59),'-8')}
   let(:time2) { DateTime.new(2013,11,rand(6..13),rand(0..23),rand(0..59),rand(0..59),'-8')}
+  let(:beg_time) { DateTime.parse("2013-11-06 19:07:00 -0800")}
+  let(:end_time) { DateTime.parse("2013-11-06 19:17:00 -0800")}
+  let(:sales_between) { FarMar::Sale.between(beg_time, end_time) }
 
 
   ########### self.all method
@@ -101,7 +104,20 @@ describe 'testing Sale class methods' do
   it 'self.between should throw ArgError if arguments are not DateTimes or cannot be parsed to DateTimes' do
     expect( proc {FarMar::Sale.between("sghgsed","4ds,nvbsd") }).must_raise(ArgumentError)
     expect( proc {FarMar::Sale.between("sghgsed",["4ds,nvbsd", 30238, 238584023]) }).must_raise(ArgumentError)
+  end
 
+  it 'self.between should return the correct number of sales' do
+    expect(sales_between.length).must_equal(10)
+  end
+
+  it 'self.between should return the correct sales, checking via their id' do
+    sales_between.each do |sale|
+      array << sale.id
+    end
+    expect(array).must_include(6360)
+    expect(array).must_include(11015)
+    expect(array).must_include(7079)
+    expect(array).must_include(7786)
   end
 
 end # end of 1st describe
@@ -133,5 +149,4 @@ describe ' testing instance methods for Sale class' do
   it 'product method must return the correct product' do
     expect(not_random_sale.product.name).must_equal(not_random_product.name)
   end
-
 end # end of describe
