@@ -39,6 +39,9 @@ describe 'testing Sale class methods' do
   let(:list_of_sales) { FarMar::Sale.all }
   let(:random_sale) { FarMar::Sale.all.sample }
   let(:array) { Array.new }
+  let(:time1) { DateTime.new(2013,11,rand(6..13),rand(0..23),rand(0..59),rand(0..59),'-8')}
+  let(:time2) { DateTime.new(2013,11,rand(6..13),rand(0..23),rand(0..59),rand(0..59),'-8')}
+  
 
   ########### self.all method
   it 'self.all should return an array of all sales' do
@@ -77,6 +80,24 @@ describe 'testing Sale class methods' do
     # skip
     expect( proc {list_of_sales.sample.find(random_sale.id)} ).must_raise(NoMethodError)
   end
+
+  #  self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+  it 'self.between should return an array' do
+    if time1 > time2
+      expect(FarMar::Sale.between(time2,time1)).must_be_instance_of(Array)
+    elsif time2 > time1
+      expect(FarMar::Sale.between(time1,time2)).must_be_instance_of(Array)
+    end
+  end
+
+  it 'array returned from self.between should have Sale objects in it' do
+    if time1 > time2
+      expect(FarMar::Sale.between(time2,time1).sample).must_be_instance_of(FarMar::Sale)
+    elsif time2 > time1
+      expect(FarMar::Sale.between(time1,time2).sample).must_be_instance_of(FarMar::Sale)
+    end
+  end
+
 
 end # end of 1st describe
 
