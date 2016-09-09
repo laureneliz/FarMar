@@ -60,13 +60,6 @@ describe 'testing Sale class methods' do
     expect( proc {list_of_sales.sample.all} ).must_raise(NoMethodError)
   end
 
- ########### self.find method
-
-  # it 'self.find(id) must return the sale with that id' do
-  #   # skip
-  #   expect(FarMar::Sale.find(random_sale.id)).must_equal(random_sale)
-  # end
-
   it 'self.find(id) must return a sale' do
     # skip
     expect(FarMar::Sale.find(random_sale.id)).must_be_instance_of(FarMar::Sale)
@@ -100,11 +93,6 @@ describe ' testing instance methods for Sale class' do
     expect(random_sale.vendor).must_be_instance_of(FarMar::Vendor)
   end
 
-  it 'vendor method should only return one vendor' do
-    array << random_sale.vendor
-    expect(array.length).must_equal(1)
-  end
-
   it 'vendor method must return the correct vendor' do
     # the vendor ID is 265 of the not_random_sale.... maybe this will work?
     expect(not_random_sale.vendor.name).must_equal(not_random_vendor.name)
@@ -114,11 +102,6 @@ describe ' testing instance methods for Sale class' do
 
   it 'product method should return a product' do
     expect(random_sale.product).must_be_instance_of(FarMar::Product)
-  end
-
-  it 'product method must return only one product' do
-    array << random_sale.product
-    expect(array.length).must_equal(1)
   end
 
   it 'product method must return the correct product' do

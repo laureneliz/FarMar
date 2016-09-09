@@ -22,7 +22,7 @@ describe 'testing Vendor class and class methods' do
     end
     unless list_of_vendors.sample.market_id.class == NilClass
       expect(list_of_vendors.sample.market_id).must_be_instance_of(Fixnum)
-    end 
+    end
   end
 
 end
@@ -110,16 +110,10 @@ describe 'testing Vendor instance methods ' do
     expect(random_vendor.market).must_be_instance_of(FarMar::Market)
   end
 
-  it 'market method must return only one market' do
-    array << random_vendor.market
-    expect(array.length).must_equal(1)
-  end
-
   it 'market method must return the correct market' do
     expect(not_random_vendor.market.name).must_equal(not_random_market.name)
   end
-
-
+  
   ######## products method
   ##products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
 
