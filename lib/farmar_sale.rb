@@ -1,9 +1,8 @@
 require_relative '../farmar.rb'
 require 'date'
-require_relative './farmar_vendor'
-require_relative './farmar_product'
+require_relative 'farmar_shared'
 
-class FarMar::Sale
+class FarMar::Sale < FarMar::Shared
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
   SALES = CSV.read('//Users/laurenfries/ada/week-5/farmar/support/sales.csv')
@@ -32,13 +31,14 @@ class FarMar::Sale
 
   # called on the class, this method finds a sale by the id given.
   def self.find(id)
-    id.class != Fixnum ? raise(ArgumentError) : id
-
-    self.all.each do |sale|
-      if sale.id == id
-        return sale
-      end
-    end
+    super
+    # id.class != Fixnum ? raise(ArgumentError) : id
+    #
+    # self.all.each do |sale|
+    #   if sale.id == id
+    #     return sale
+    #   end
+    # end
   end
 
   # this method takes a sale, grabs that sale's vendor_id, searches the Vendors by that id, and returns the vendor that made that sale.
