@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 require_relative '../lib/farmar_market'
 
 
-describe 'testing Market class and class methods' do
+describe 'testing Market class' do
 
   let(:list_of_markets) { FarMar::Market.all }
 
