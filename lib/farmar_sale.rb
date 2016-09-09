@@ -55,8 +55,7 @@ class FarMar::Sale
     return found_product
   end
 
-  # takes 2 DateTimes and then find all the sales betwen thenm
-
+  # takes 2 DateTimes and then find all the sales betwen then.
   def self.between(beginning_time, end_time)
     if beginning_time.class != DateTime && end_time.class != DateTime
       beginning_time = DateTime.parse(beginning_time)
