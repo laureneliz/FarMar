@@ -5,8 +5,6 @@ require_relative '../lib/farmar_market'
 describe 'testing Market class and class methods' do
 
   let(:list_of_markets) { FarMar::Market.all }
-  let(:random_market) { FarMar::Market.all.sample}
-  let (:array) { Array.new }
 
   it 'market class should exist' do
     expect(list_of_markets.sample).must_be_instance_of(FarMar::Market)
@@ -35,11 +33,17 @@ describe 'testing Market class and class methods' do
     end
     unless market.zip.class == NilClass
       expect(market.zip).must_be_instance_of(String)
-    end  
+    end
   end
 
+end # end of describe
 
- ########### self.all method
+describe 'testing Market class methods' do
+  let(:list_of_markets) { FarMar::Market.all }
+  let(:random_market) { FarMar::Market.all.sample}
+  let (:array) { Array.new }
+
+  ########### self.all method
 
   it 'self.all should return an array of all markets' do
     expect(list_of_markets).must_be_instance_of(Array)
@@ -78,7 +82,7 @@ describe 'testing Market class and class methods' do
     expect( proc {list_of_markets.sample.find(random_market.id)} ).must_raise(NoMethodError)
   end
 
-end # end of 1st describe
+end # end of  describe
 
 describe 'testing Market instance methods' do
 
