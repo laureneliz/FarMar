@@ -13,18 +13,26 @@ describe 'testing Sale class and class methods' do
     expect(list_of_sales.sample).must_be_instance_of(FarMar::Sale)
   end
 
- ########### self.all method
-
-  # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
-    expect(list_of_sales.sample.id).must_be_instance_of(Fixnum)
-    expect(list_of_sales.sample.amount).must_be_instance_of(Fixnum)
-    expect(list_of_sales.sample.purchase_time).must_be_instance_of(DateTime)
-    expect(list_of_sales.sample.vendor_id).must_be_instance_of(Fixnum)
-    expect(list_of_sales.sample.product_id).must_be_instance_of(Fixnum)
-
+    sale = list_of_sales.sample
+    unless sale.id.class == NilClass
+      expect(sale.id).must_be_instance_of(Fixnum)
+    end
+    unless sale.amount.class == NilClass
+      expect(sale.amount).must_be_instance_of(Fixnum)
+    end
+    unless sale.purchase_time.class == NilClass
+      expect(sale.purchase_time).must_be_instance_of(DateTime)
+    end
+    unless sale.vendor_id.class == NilClass
+      expect(sale.vendor_id).must_be_instance_of(Fixnum)
+    end
+    unless sale.product_id.class == NilClass
+      expect(sale.product_id).must_be_instance_of(Fixnum)
+    end 
   end
 
+  ########### self.all method
   it 'self.all should return an array of all sales' do
     expect(list_of_sales).must_be_instance_of(Array)
     expect(list_of_sales.length).must_equal(12798)

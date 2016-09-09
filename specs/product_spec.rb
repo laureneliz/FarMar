@@ -13,10 +13,15 @@ describe 'testing Product class' do
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
-    expect(list_of_products.sample.id).must_be_instance_of(Fixnum)
-    expect(list_of_products.sample.name).must_be_instance_of(String)
-    expect(list_of_products.sample.vendor_id).must_be_instance_of(Fixnum)
-
+    unless list_of_products.sample.id.class == NilClass
+      expect(list_of_products.sample.id).must_be_instance_of(Fixnum)
+    end
+    unless list_of_products.sample.name.class == NilClass
+      expect(list_of_products.sample.name).must_be_instance_of(String)
+    end 
+    unless list_of_products.sample.vendor_id.class == NilClass
+      expect(list_of_products.sample.vendor_id).must_be_instance_of(Fixnum)
+    end
   end
 
 end # end of 1st describe

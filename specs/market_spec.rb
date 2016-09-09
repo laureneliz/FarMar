@@ -14,13 +14,28 @@ describe 'testing Market class and class methods' do
 
   # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
-    expect(list_of_markets.sample.id).must_be_instance_of(Fixnum)
-    expect(list_of_markets.sample.name).must_be_instance_of(String)
-    expect(list_of_markets.sample.address).must_be_instance_of(String)
-    expect(list_of_markets.sample.city).must_be_instance_of(String)
-    expect(list_of_markets.sample.county).must_be_instance_of(String)
-    expect(list_of_markets.sample.state).must_be_instance_of(String)
-    expect(list_of_markets.sample.zip).must_be_instance_of(String)
+    market = list_of_markets.sample
+    unless market.id.class == NilClass
+      expect(market.id).must_be_instance_of(Fixnum)
+    end
+    unless market.name.class == NilClass
+      expect(market.name).must_be_instance_of(String)
+    end
+    unless market.address.class == NilClass
+      expect(market.address).must_be_instance_of(String)
+    end
+    unless market.city.class == NilClass
+      expect(market.city).must_be_instance_of(String)
+    end
+    unless market.county.class == NilClass
+      expect(market.county).must_be_instance_of(String)
+    end
+    unless market.state.class == NilClass
+      expect(market.state).must_be_instance_of(String)
+    end
+    unless market.zip.class == NilClass
+      expect(market.zip).must_be_instance_of(String)
+    end  
   end
 
 

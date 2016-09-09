@@ -10,12 +10,19 @@ describe 'testing Vendor class and class methods' do
     expect(list_of_vendors.sample).must_be_instance_of(FarMar::Vendor)
   end
 
-  # there is no error handling here for in case the data types are nil. use ||= somewhere?
   it 'testing data types for attributes' do
-    expect(list_of_vendors.sample.id).must_be_instance_of(Fixnum)
-    expect(list_of_vendors.sample.name).must_be_instance_of(String)
-    expect(list_of_vendors.sample.num_employees).must_be_instance_of(Fixnum)
-    expect(list_of_vendors.sample.market_id).must_be_instance_of(Fixnum)
+    unless list_of_vendors.sample.id.class == NilClass
+      expect(list_of_vendors.sample.id).must_be_instance_of(Fixnum)
+    end
+    unless list_of_vendors.sample.name.class == NilClass
+      expect(list_of_vendors.sample.name).must_be_instance_of(String)
+    end
+    unless list_of_vendors.sample.num_employees.class == NilClass
+      expect(list_of_vendors.sample.num_employees).must_be_instance_of(Fixnum)
+    end
+    unless list_of_vendors.sample.market_id.class == NilClass
+      expect(list_of_vendors.sample.market_id).must_be_instance_of(Fixnum)
+    end 
   end
 
 end
