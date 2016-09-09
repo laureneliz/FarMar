@@ -29,8 +29,16 @@ describe 'testing Sale class and class methods' do
     end
     unless sale.product_id.class == NilClass
       expect(sale.product_id).must_be_instance_of(Fixnum)
-    end 
+    end
   end
+
+end
+
+describe 'testing Sale class methods' do
+
+  let(:list_of_sales) { FarMar::Sale.all }
+  let(:random_sale) { FarMar::Sale.all.sample }
+  let(:array) { Array.new }
 
   ########### self.all method
   it 'self.all should return an array of all sales' do
@@ -39,15 +47,13 @@ describe 'testing Sale class and class methods' do
   end
 
   it 'self.all array should contain all sales, including a random sampling of sale ids' do
-    # i can't figure out how to do this with a let. :(
-    array_of_ids = []
     list_of_sales.each do |sale|
-      array_of_ids << sale.id
+      array << sale.id
     end
-    expect(array_of_ids).must_include(11389)
-    expect(array_of_ids).must_include(4943)
-    expect(array_of_ids).must_include(990)
-    expect(array_of_ids).must_include(1)
+    expect(array).must_include(11389)
+    expect(array).must_include(4943)
+    expect(array).must_include(990)
+    expect(array).must_include(1)
   end
 
   it 'self.all should be a class method, and thus raise method error if called on an instance' do
