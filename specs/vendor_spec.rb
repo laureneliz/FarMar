@@ -176,17 +176,20 @@ describe 'testing optional Vendor methods' do
 
   #### self.most_revenue(n)
   it 'most_revenue must take a fixnum as an argument' do
+    skip
     expect( proc {FarMar::Vendor.most_revenue(403923.45923)} ).must_raise(ArgumentError)
     expect( proc {FarMar::Vendor.most_revenue([2,5,7,4,46])} ).must_raise(ArgumentError)
     expect( proc {FarMar::Vendor.most_revenue("hello this is a string")} ).must_raise(ArgumentError)
   end
 
   it 'most_revenue must return an array of arrays' do
+    skip
     expect(highest_selling_vendors).must_be_instance_of(Array)
     expect(highest_selling_vendors.sample).must_be_instance_of(Array)
   end
 
   it 'first element of 2d array must be a Vendor, second element must be a fixnum' do
+    skip
     expect(highest_selling_vendors.sample[0]).must_be_instance_of(FarMar::Vendor)
     expect(highest_selling_vendors.sample[1]).must_be_instance_of(Fixnum)
   end
